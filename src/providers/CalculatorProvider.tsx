@@ -7,22 +7,22 @@ interface CalculatorProviderProps {
 }
 
 const buttons: CalculatorButton[] = [
-    {text: "1", color: "bg-gray-700" },
-    {text: "2", color: "bg-gray-700" },
-    {text: "3", color: "bg-gray-700" },
+    {text: "1", color: "bg-gray-600" },
+    {text: "2", color: "bg-gray-600" },
+    {text: "3", color: "bg-gray-600" },
     {text: "+", color: "bg-gray-500" },
-    {text: "4", color: "bg-gray-700" },
-    {text: "5", color: "bg-gray-700" },
-    {text: "6", color: "bg-gray-700" },
+    {text: "4", color: "bg-gray-600" },
+    {text: "5", color: "bg-gray-600" },
+    {text: "6", color: "bg-gray-600" },
     {text: "-", color: "bg-gray-500" },
-    {text: "7", color: "bg-gray-700" },
-    {text: "8", color: "bg-gray-700" },
-    {text: "9", color: "bg-gray-700" },
-    {text: "*", display: "x",  color: "bg-gray-500" },
-    {text: "C", color: "bg-red-500" },
-    {text: "0", color: "bg-gray-700" },
+    {text: "7", color: "bg-gray-600" },
+    {text: "8", color: "bg-gray-600" },
+    {text: "9", color: "bg-gray-600" },
+    {text: "x", color: "bg-gray-500" },
+    {text: "C", color: "bg-red-500 outline-red-400" },
+    {text: "0", color: "bg-gray-600" },
+    {text: "÷", color: "bg-gray-500" },
     {text: "=", color: "bg-gray-500" },
-    {text: "/", color: "bg-gray-500" },
 ];
 
 export const CalculatorProvider = ({children}: CalculatorProviderProps) => {
@@ -50,7 +50,9 @@ export const CalculatorProvider = ({children}: CalculatorProviderProps) => {
     // Function to calculate the result of the current evaluation string
     const calculate = () => {
         try {
-            const evalResult = eval(result);
+            const formatedResult = result.replaceAll("x", "*").replaceAll("÷", "/");
+            const evalResult = eval(formatedResult);
+
             setResult(evalResult.toString());
 
         } catch (error) {
@@ -59,7 +61,7 @@ export const CalculatorProvider = ({children}: CalculatorProviderProps) => {
     }
 
     return (
-        <CalculatorContext.Provider value={{result, calculate, addEvaluate, clearResult, buttons}}>
+        <CalculatorContext.Provider value={{ result, calculate, addEvaluate, clearResult, buttons}}>
             {children}
         </CalculatorContext.Provider>
     );
