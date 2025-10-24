@@ -30,10 +30,15 @@ export const CalculatorProvider = ({children}: CalculatorProviderProps) => {
 
     // Function to add value to the current evaluation string
     const addEvaluate = (value: string) => {
+      if(result == "Error"){
+        clearResult();
+            return;
+      }
         if (value === "C") {
             clearResult();
             return;
         }
+
 
         if (value === "=") {
             calculate();
