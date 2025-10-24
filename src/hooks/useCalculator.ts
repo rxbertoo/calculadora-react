@@ -1,11 +1,8 @@
 import { useContext } from "react";
-import { TimerContext } from "../context/CalculatorContext";
-
-
-
+import {CalculatorContext} from "../context/CalculatorContext.tsx";
 
 export const useCalculator = () => {
-    const context = useContext(TimerContext);
+    const context = useContext(CalculatorContext);
 
     if (!context) {
         throw new Error("useCalculator must be used within a CalculatorProvider");
